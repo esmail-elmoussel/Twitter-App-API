@@ -54,6 +54,6 @@ app.put('/unfollow/:username',handleUnfollow(User));
 // app.delete('/delete',(req,res) => User.deleteMany({}).then(res.json('Success')));
 
 
-app.listen(5000,() => {
-    console.log('app is running at port 5000!')
-})
+app.listen(process.env.PORT || 5000,() => {
+    console.log(`app is running on port ${process.env.PORT}`);
+});
