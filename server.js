@@ -25,7 +25,8 @@ const handleUnfollow = require('./controllers/handleUnfollow');
 const app = express();
 
 // connecting to MongoDB
-mongoose.connect('mongodb://localhost:27017/twitter-app', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
+var uristring = process.env.MONGODB_URI || 'mongodb://localhost:27017/twitter-app';
+mongoose.connect(uristring, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB is not running ya a7a :'));
 db.once('open', () => {console.log('MongoDB is running ya som3a!')});
@@ -34,6 +35,7 @@ db.once('open', () => {console.log('MongoDB is running ya som3a!')});
 app.use(bodyParser.json());
 app.use(cors());
 
+// end points
 app.get('/',(req,res) => {res.send('It is working!')});
 app.post('/register',handleRegister(User,bcrypt));
 app.post('/signin',handleSignin(User,bcrypt));
