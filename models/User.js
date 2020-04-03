@@ -19,13 +19,11 @@ const userSchema = new Schema ({
         type: String,
         required: [true,'Password is required!'],
         minlength: 1,
-        maxlength: 15
+        maxlength: 100
     },
     following: {
-        type: Boolean,
-        default: false
+        type: [String]
     }
-    // tweetsId: [{ type: String, ref: 'Tweet' }]
 })
 
 const User = mongoose.model('User', userSchema);

@@ -1,19 +1,12 @@
-const handleRegister = (User) => (req,res) => {
+const handleRegister = (User,bcrypt) => (req,res) => {
     const {username,email,password} = req.body;
+    const hash = bcrypt.hashSync(password);
     User.create({
         "username": username,
         "email": email,
-        "password": password
+        "password": hash
     })
     .then(newUser => res.json(newUser))
-    .catch(err => res.status(400).json(err));
+    .catch(err => res.status(400).json(err.keyPattern));
 }
-module.exports = handleRegister; 
-
-
-
-// {
-//     "username": "Mongo",
-//     "email": "Mongo@gmail.com",
-//     "password": "123"
-// }
+module.exports = handleRegister;

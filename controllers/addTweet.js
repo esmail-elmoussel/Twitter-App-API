@@ -11,14 +11,6 @@ const addTweet = (User,Tweet) => (req,res) => {
                 content: content
             })
             .then(newTweet => res.json(newTweet))
-            // // then add the tweet id to the user.tweetsId array ( that makes all user tweets easy to find)
-            // .then(newTweet => {
-            //     User.findOneAndUpdate({ username: username },{
-            //         "$push": { tweetsId: newTweet._id }
-            //     })
-            //     .then(res.json(newTweet))
-            //     .catch(err => res.status(400).json(err));
-            // })
             .catch(err => res.status(400).json(err.message));
         } else {
             res.json('please signin first!')
@@ -28,8 +20,3 @@ const addTweet = (User,Tweet) => (req,res) => {
 }
 
 module.exports = addTweet;
-
-
-// {
-// 	"content":"Testing everything !"
-// }

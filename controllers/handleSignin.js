@@ -1,21 +1,13 @@
-const handleSignin = (User) => (req,res) => {
+const handleSignin = (User,bcrypt) => (req,res) => {
     const {email,password} = req.body;
-    User.findOne({
-        "email": email,
-        "password": password
-    })
+    User.findOne({ "email": email })
     .then(user => {
-        if(user)
+        if(bcrypt.compareSync(password, user.password))
             res.json(user)
         else
-            res.status(400).json('Wrong email or password')
-    }) 
-    .catch(err => res.status(400).json(err))
+            res.status(400).json('Wrong Password')
+    })
+    .catch(err => res.status(400).json('Wrong Email'))
 }
 
 module.exports = handleSignin; 
-
-// {
-// 	"email": "esmail@gmail.com",
-// 	"password": "123"
-// }

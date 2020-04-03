@@ -18,6 +18,7 @@ const commentSchema = new Schema ({
         default: Date.now 
     }
 })
+
 // creating tweet schema
 const tweetSchema = new Schema ({
     username: { type: String, ref: 'User' },
