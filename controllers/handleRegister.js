@@ -7,6 +7,6 @@ const handleRegister = (User,bcrypt) => (req,res) => {
         "password": hash
     })
     .then(newUser => res.json(newUser))
-    .catch(err => res.status(400).json(err.keyPattern));
+    .catch(err => res.status(400).json(err));
 }
 module.exports = handleRegister;
