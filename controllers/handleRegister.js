@@ -1,6 +1,6 @@
 const handleRegister = (User, bcrypt) => (req, res) => {
   const { username, email, password } = req.body;
-  const hash = bcrypt.hashSync(password, 10);
+  const hash = bcrypt.hashSync(password);
   User.create({
     username: username,
     email: email,
